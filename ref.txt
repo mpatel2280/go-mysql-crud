@@ -1,0 +1,26 @@
+
+go mod init go-mysql-crud
+go mod tidy 
+
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=go-mysql-crud -p 3307:3306 -d mysql:8
+
+go run main.go
+
+
+[GIN-debug] POST   /users                    --> main.createUser (3 handlers)
+Postman:
+POST: http://localhost:8080/users
+Body: row 
+{
+  "name": "Manish Patel",
+  "email": "manish@example.com"
+}
+
+[GIN-debug] GET    /users                    --> main.getUsers (3 handlers)
+[GIN-debug] GET    /users/:id                --> main.getUserByID (3 handlers)
+[GIN-debug] PUT    /users/:id                --> main.updateUser (3 handlers)
+[GIN-debug] DELETE /users/:id                --> main.deleteUser (3 handlers)
+
+
+# connect docker mysql 
+docker exec -it mysql bash
